@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MultiPlayers</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        .background{
+            background-color:#372d2d;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+        .title h1{
+            color: white;
+            font-size: 40px;
+            font-style: italic;
+            text-shadow: 3px 3px 6px orange;
+            font-weight: 600;
+        }
+        .display{
+            color: white;
+            font-size: 25px;
+            padding-top: 10px;
+        }
+        .hide{
+            display: none;
+        }
+        .container{
+            padding-top: 10px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 33% 33% 33%;
+            grid-template-rows: 33% 33% 33%;
+            max-width: 300px;
+        }
+        .container .tile{
+            gap: 3rem;
+        }
+        .tile{
+            border: 2px solid magenta;
+            min-width: 100px;
+            min-height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+            cursor: pointer;
+        }
+        .tile:hover{
+            background-color: #343943;
+            transition: 0.3s ease-in-out;
+        }
+        .playerX{
+            color: #c2ec59 ;
+        }
+        .playerO{
+            color: #08d9d6;
+        }
+        .controls{
+            padding-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #reset, #Home{
+            padding: 0.6rem 1.5rem;
+            border-radius: 10px;
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: white;
+            background-color: rgb(168, 78, 253);
+            box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.25),
+                inset 2px 2px 5px rgba(255, 255, 255, 0.5),
+                inset -3px -3px 5px rgba(0, 0, 0, 0.5);
+
+        }
+        #reset:hover,#Home:hover{
+            transform: scale(1.05);
+            box-shadow: 0 0 10px #c9c1c1;
+            background-color: #0f0f0f;
+            color: wheat;
+        }
+        #Home a{
+            text-decoration: inherit;
+            color:white;
+        }
+    </style>
+   
+</head>
+<body>
+    <section class="background">
+        <div class="title">
+            <h1>TIC-TAC-TOE Multiplayers</h1>
+        </div>
+        <div class="display">Player <span class="display-player playerX">X</span>'s Turn</div>
+        <div class="container">
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+        </div>
+        <div class="display winner announcer"></div>
+        <div class="controls">
+            <button id="reset">Reset</button>
+            <button id="Home"><a href="index.html">Home</a></button>
+        </div>
+    </section>
+
+    <script>
+        window.addEventListener('DOMContentLoaded',() =>{
+            const tiles = Array.from(document.querySelectorAll('.tile'));
+            const PlayerDisplay = document.querySelector('.display-player');
+            const resetButton = document.querySelector('#reset');
+            const announcer = document.querySelector('.announcer');
+
+            let board = ['','','','','','','','',''];
+            let currentPlayer = 'X';
+            let isGameActive = true;
+
+            const playerX_won = 'playerX_won';
+            const playerO_won = 'playerO_won';
+            const tie = 'TIE';
+
+            const WinningConditions = [
+                [0,1,2],
+                [3,4,5],
+                [6,7,8],
+                [0,3,6],
+                [1,4,7],
+                [2,5,8],
+                [0,4,8],
+                [2,4,6]
+            ];
+            
+            function handleResultValidation(){
+                let roundwon = false;
+                for(let i = 0; i <= 7; i++){
+                    const wincondition = WinningConditions[i];
+                    const a = board[wincondition[0]];
+                    const b = board[wincondition[1]];
+                    const c = board[wincondition[2]];
+                    if(a === '' || b === '' || c === ''){
+                        continue;
+                    }
+                    if(a === b && b === c){
+                        roundwon = true;
+                        break;
+                    }
+                }
+                if(roundwon){
+                    announce(currentPlayer === 'X' ? playerX_won : playerO_won);
+                    isGameActive = false;
+                    return;
+                }
+                if(!board.includes('')) announce(tie);
+            }   
+
+            const announce = (type) => {
+                switch(type){
+                    case playerO_won:
+                        announcer.innerHTML = 'Player <span class="playerO">O</span> Won 🎉';
+                        break;
+                    case playerX_won: 
+                        announcer.innerHTML = 'Player <span class="playerX">X</span> Won 🎉';
+                        break;
+                    case tie:
+                        announcer.innerHTML = 'TIE 🤝';
+                        break;
+                } 
+                announcer.classList.remove('hide');
+            }
+
+            const isValidAction = (tile) => {
+                if (tile.innerText === 'X' || tile.innerText === 'O'){
+                    return false;
+                }
+                return true;
+            }
+
+            const updateBoard = (index) => {
+                board[index] = currentPlayer;
+            }
+
+            const changePlayer = () => {
+                PlayerDisplay.classList.remove(`player${currentPlayer}`);
+                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                PlayerDisplay.innerText = currentPlayer;
+                PlayerDisplay.classList.add(`player${currentPlayer}`);
+            }
+
+            const userAction = (tile, index) => {
+                if(isValidAction(tile) && isGameActive){
+                    tile.innerText = currentPlayer;
+                    tile.classList.add(`player${currentPlayer}`);
+                    updateBoard(index);
+                    handleResultValidation();
+                    changePlayer();
+                }
+            }
+
+            const resetBoard = () => {
+                board = ['','','','','','','','',''];
+                isGameActive = true;
+                announcer.classList.add("hide");
+                
+                if(currentPlayer === 'O'){
+                    changePlayer();
+                }
+
+                tiles.forEach(tile => {
+                    tile.innerText = '';
+                    tile.classList.remove('playerX');
+                    tile.classList.remove('playerO');
+                });
+            }
+
+            tiles.forEach((tile, index) => {
+                tile.addEventListener('click', () => userAction(tile, index));
+            });
+
+            resetButton.addEventListener('click', resetBoard);
+        })
+    </script>
+</body>
+</html>
