@@ -8,7 +8,12 @@ This is a Tic-Tac-Toe game built using HTML, CSS, and JavaScript. The game allow
 
 ## 🚀 Features
 
-✅ Classic 2-player mode (X vs. O)✅ Interactive UI with smooth animations✅ Win detection logic to declare the winner✅ Restart Button to reset the game✅ Responsive design for different screen sizes✅ Minimalist and clean UI
+✅ Classic 2-player mode (X vs. O)
+✅ Interactive UI with smooth animations
+✅ Win detection logic to declare the winner
+✅ Restart Button to reset the game
+✅ Responsive design for different screen sizes
+✅ Minimalist and clean UI
 
 ## 🛠️ Technologies Used
 
