@@ -34,6 +34,7 @@ Click the Restart Button to play again.
 ## 📂 Folder Structure
 
 📁 Tic-Tac-Toe
+
 │── 📄 index.html      
 │── 🎨 multiplayer.html       
 │── 🎮 computer.html      
@@ -71,4 +72,5 @@ This project is licensed under the MIT License.
 ## 📬 Contact
 
 🔗 GitHub: [Shaik Albaz](https://github.com/iamshaikalbaz)
+
 📧 Email: albasshaik786@gmail.com
