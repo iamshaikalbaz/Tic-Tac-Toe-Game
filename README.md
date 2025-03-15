@@ -1,16 +1,16 @@
-Tic-Tac-Toe Game
+#Tic-Tac-Toe Game
 
 
 
-🏆 About the Project
+#🏆 About the Project
 
 This is a Tic-Tac-Toe game built using HTML, CSS, and JavaScript. The game allows two players to play alternately, marking their moves on a 3x3 grid. The first player to align three marks in a row, column, or diagonal wins the game.
 
-🚀 Features
+#🚀 Features
 
 ✅ Classic 2-player mode (X vs. O)✅ Interactive UI with smooth animations✅ Win detection logic to declare the winner✅ Restart Button to reset the game✅ Responsive design for different screen sizes✅ Minimalist and clean UI
 
-🛠️ Technologies Used
+#🛠️ Technologies Used
 
 HTML – Structure of the game
 
@@ -18,7 +18,7 @@ CSS – Styling and layout
 
 JavaScript – Game logic and interactions
 
-🎮 How to Play
+#🎮 How to Play
 
 The game starts with Player X.
 
@@ -31,16 +31,16 @@ If all cells are filled without a winner, the game results in a draw.
 Click the Restart Button to play again.
 
 
-📂 Folder Structure
+#📂 Folder Structure
 
 📁 Tic-Tac-Toe
 │── 📄 index.html      
 │── 🎨 multiplayer.html       
 │── 🎮 computer.html      
 
-💻 Installation & Usage
+#💻 Installation & Usage
 
-🔹 Run Locally
+#🔹 Run Locally
 
 Clone the repository
 
@@ -52,23 +52,23 @@ cd Tic-Tac-Toe Game
 
 Open index.html in your browser
 
-🔹 Play Online
+#🔹 Play Online
 
-You can also play the game live here! [Tic-Tac-Toe Game]()
+You can also play the game live here! [Tic-Tac-Toe Game](https://iamshaikalbaz.github.io/Tic-Tac-Toe-Game/)
 
-🏗️ Future Enhancements
+#🏗️ Future Enhancements
 
 🚀 AI Mode (Single-player vs. Computer)🎨 Theme Selection (Dark mode, Light mode)📱 Improved Mobile UI
 
-🤝 Contributing
+#🤝 Contributing
 
 Contributions are welcome! Feel free to fork the repository, submit a pull request, or open an issue.
 
-📝 License
+#📝 License
 
 This project is licensed under the MIT License.
 
-📬 Contact
+#📬 Contact
 
 🔗 GitHub: [Shaik Albaz](https://github.com/iamshaikalbaz)
 📧 Email: albasshaik786@gmail.com
